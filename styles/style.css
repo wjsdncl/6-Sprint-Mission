@@ -36,10 +36,6 @@ header {
     line-height: 1.4;
 }
 
-/* 배너, 메인 콘텐츠 */
-main {
-}
-
 .container {
     margin-top: 70px;
 }
@@ -203,7 +199,7 @@ footer {
 
 .footer_middle {
     display: flex;
-    gap: 30px;
+    gap: clamp(0.2rem, 3dvw, 5rem);
 }
 
 .privacy,
@@ -216,13 +212,7 @@ footer {
 
 .footer_social {
     display: flex;
-    gap: 14px;
-}
-
-.facebook,
-.twitter,
-.youtube,
-.instagram {
+    gap: 1dvw;
 }
 
 /* -------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -247,7 +237,7 @@ footer {
 
     .banner_top_content {
         align-items: center;
-        width: 40rem;
+        width: 100%;
         padding-bottom: 8rem;
     }
 
@@ -257,7 +247,7 @@ footer {
 
     /* 상단 배너 이미지 */
     .banner_top_img {
-        width: 120dvw;
+        width: 100dvw;
     }
 
     /* 메인 콘텐츠 */
@@ -279,6 +269,7 @@ footer {
     .content_item_sub {
         width: 95dvw;
     }
+
     /* 콘텐츠 내용 br 제거 */
     .content_item_sub br {
         display: none;
@@ -295,7 +286,7 @@ footer {
 
     /* 하단 배너 이미지 */
     .banner_floor_img {
-        width: 120dvw;
+        width: 100dvw;
     }
 }
 
@@ -307,16 +298,37 @@ footer {
         margin-left: 16px;
     }
 
+    .header_logo img {
+        content: url(/images/logo/logo_text.png);
+    }
+
     .header_login_btn {
         margin-right: 16px;
+    }
+
+    .banner_top_text {
+        text-align: center;
+        font-size: 2.5rem;
+    }
+
+    /* 상단 배너 버튼 */
+    .banner_top_btn {
+        width: 180px;
+        height: 56px;
+        padding: 16px;
+        border-radius: 9999px;
+        text-align: center;
+        font-size: 1.25rem;
+        font-weight: 600;
+        line-height: 1.4;
+        color: #fff;
     }
 
     .banner_top_content br {
         display: inline;
     }
-
     /* 상단 배너 이미지 */
     .banner_top_img {
-        width: 180dvw;
+        width: 100dvw;
     }
 }
