@@ -1,12 +1,12 @@
+import { validateEmail, validatePassword } from "/js/utils/validator.js";
+
 const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("psw");
 const submitButton = document.getElementById("btn");
 
 function validateInputs() {
-    const isValidEmail = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/.test(
-        emailInput.value.trim()
-    );
-    const isValidPassword = passwordInput.value.trim().length >= 8;
+    const isValidEmail = validateEmail(emailInput.value);
+    const isValidPassword = validatePassword(passwordInput.value);
 
     submitButton.disabled = !(isValidEmail && isValidPassword);
 }
