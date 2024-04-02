@@ -25,7 +25,7 @@
 }
 
 .user_email_label,
-.user_name_label,
+.user_nickname_label,
 .user_psw_label,
 .user_psw_chk_label {
     margin-top: 0.5rem;
@@ -35,7 +35,7 @@
 }
 
 .user_email_input,
-.user_name_input,
+.user_nickname_input,
 .user_psw_input,
 .user_psw_chk_input {
     margin-top: 0.5rem;
@@ -49,14 +49,14 @@
 }
 
 .user_email_input:focus,
-.user_name_input:focus,
+.user_nickname_input:focus,
 .user_psw_input:focus,
 .user_psw_chk_input:focus {
     outline-color: var(--blue);
 }
 
 .user_email_input::placeholder,
-.user_name_input::placeholder,
+.user_nickname_input::placeholder,
 .user_psw_input::placeholder,
 .user_psw_chk_input::placeholder {
     color: var(--blue-50);
@@ -160,8 +160,8 @@
         margin-bottom: 3rem;
     }
 
-    .signin,
-    .signup {
+    .signin_form,
+    .signup_form {
         max-width: 400px;
         width: 100%;
     }
@@ -173,14 +173,14 @@
     }
 
     .user_email_input,
-    .user_name_input,
+    .user_nickname_input,
     .user_psw_input,
     .user_psw_chk_input {
         font-size: 0.8rem;
     }
 
     .user_email_input::placeholder,
-    .user_name_input::placeholder,
+    .user_nickname_input::placeholder,
     .user_psw_input::placeholder,
     .user_psw_chk_input::placeholder {
         font-size: 0.8rem;
