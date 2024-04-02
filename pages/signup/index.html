@@ -25,6 +25,7 @@
     </head>
     <body>
         <main class="main_signup">
+<<<<<<< HEAD
             <!-- 로그인 폼 -->
             <form
                 class="signup"
@@ -45,12 +46,31 @@
 
                     <!-- 로그인 이메일 작성 -->
                     <li>
+=======
+            <!-- 로고 버튼 -->
+            <a class="logo_btn" href="/">
+                <!-- 로고 이미지 -->
+                <img class="logo_img" src="/images/logo/logo.png" alt="" />
+            </a>
+
+            <!-- 회원가입 폼 -->
+            <form class="signup_form" action="/pages/signup/" method="get">
+                <fieldset class="content">
+                    <!-- 회원가입 이메일 라벨 -->
+                    <div class="user_email_label">
+                        <label for="email">이메일</label>
+                    </div>
+
+                    <!-- 회원가입 이메일 작성 -->
+                    <div>
+>>>>>>> 59a0ba8f579c81152190d283dbf778dbc2034510
                         <input
                             id="email"
                             class="user_email_input"
                             type="email"
                             name="user_email"
                             placeholder="이메일을 입력해주세요"
+<<<<<<< HEAD
                             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                             required
                         />
@@ -79,6 +99,35 @@
 
                     <!-- 로그인 비밀번호 작성 -->
                     <li class="user_psw_content">
+=======
+                            required
+                        />
+                    </div>
+
+                    <duv class="user_nickname_label">
+                        <label for="nickname">닉네임</label>
+                    </duv>
+
+                    <!-- 회원가입 닉네임 작성 -->
+                    <div>
+                        <input
+                            id="nickname"
+                            class="user_nickname_input"
+                            type="text"
+                            name="user_nickname"
+                            placeholder="닉네임을 입력해주세요"
+                            required
+                        />
+                    </div>
+
+                    <!-- 회원가입 비밀번호 라벨 -->
+                    <div class="user_psw_label">
+                        <label for="psw">비밀번호</label>
+                    </div>
+
+                    <!-- 회원가입 비밀번호 작성 -->
+                    <div class="user_psw_content">
+>>>>>>> 59a0ba8f579c81152190d283dbf778dbc2034510
                         <input
                             id="psw"
                             class="user_psw_input"
@@ -94,6 +143,7 @@
                                 alt="psw_chk"
                             />
                         </button>
+<<<<<<< HEAD
                     </li>
 
                     <!-- 로그인 비밀번호 라벨 -->
@@ -102,13 +152,26 @@
                     </li>
 
                     <li class="user_psw_chk_content">
+=======
+                    </div>
+
+                    <!-- 회원가입 비밀번호 라벨 -->
+                    <div class="user_psw_chk_label">
+                        <label for="psw">비밀번호 확인</label>
+                    </div>
+
+                    <div class="user_psw_chk_content">
+>>>>>>> 59a0ba8f579c81152190d283dbf778dbc2034510
                         <input
                             id="psw_chk"
                             class="user_psw_chk_input"
                             type="password"
                             name="user_psw_chk"
                             placeholder="비밀번호를 다시 한 번 입력해주세요"
+<<<<<<< HEAD
                             pattern=".{8,}"
+=======
+>>>>>>> 59a0ba8f579c81152190d283dbf778dbc2034510
                             required
                         />
                         <button type="button" class="psw_chk_btn">
@@ -117,10 +180,17 @@
                                 alt="psw_chk"
                             />
                         </button>
+<<<<<<< HEAD
                     </li>
 
                     <li>
                         <!-- 로그인 버튼 -->
+=======
+                    </div>
+
+                    <div>
+                        <!-- 회원가입 버튼 -->
+>>>>>>> 59a0ba8f579c81152190d283dbf778dbc2034510
                         <button
                             id="btn"
                             class="submit_btn"
@@ -130,6 +200,7 @@
                         >
                             회원가입
                         </button>
+<<<<<<< HEAD
                     </li>
 
                     <!-- 소셜 간편 로그인 -->
@@ -177,5 +248,53 @@
                 </ul>
             </form>
         </main>
+=======
+                    </div>
+                </fieldset>
+
+                <!-- 소셜 간편 회원가입 -->
+                <div class="social_signin">
+                    <h1>간편 회원가입하기</h1>
+
+                    <div class="social_btns">
+                        <!-- 구글 회원가입 버튼-->
+                        <a href="https://www.google.com/" class="signin_google">
+                            <!-- 구글 회원가입 이미지 -->
+                            <img
+                                src="/images/social_signin/google.png"
+                                alt="구글 간편 회원가입"
+                            />
+                        </a>
+
+                        <!-- 카카오 회원가입 버튼 -->
+                        <a
+                            href="https://www.kakaocorp.com/page/"
+                            class="signin_kakao"
+                        >
+                            <!-- 카카오 회원가입 이미지 -->
+                            <img
+                                src="/images/social_signin/kakao.png"
+                                alt="카카오 간편 회원가입"
+                            />
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 회원가입으로 이동 -->
+                <div class="to_signin">
+                    <p class="signin_text">
+                        이미 회원이신가요?
+
+                        <!-- 회원가입 이동 버튼 -->
+                        <a class="signin_btn" href="/pages/signin">
+                            회원가입
+                        </a>
+                    </p>
+                </div>
+            </form>
+        </main>
+        <script type="module" src="/js/utils/validator.js"></script>
+        <script type="module" src="/js/sign/signup.js"></script>
+>>>>>>> 59a0ba8f579c81152190d283dbf778dbc2034510
     </body>
 </html>
