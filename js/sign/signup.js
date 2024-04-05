@@ -6,6 +6,7 @@ import {
   validateInput,
   validatePasswordMatchInput,
   togglePasswordVisibility,
+  errorMessages,
 } from "/js/utils/validator.js";
 
 const emailInput = document.getElementById("email");
@@ -14,22 +15,6 @@ const passwordInput = document.getElementById("psw");
 const passwordMatchInput = document.getElementById("psw_chk");
 
 const submitButton = document.getElementById("btn");
-
-const errorMessages = {
-  email: {
-    empty: "이메일을 입력해주세요.",
-    invalid: "잘못된 이메일 형식입니다.",
-  },
-  nickname: {
-    empty: "닉네임을 입력해주세요.",
-    invalid: "닉네임을 2자 이상 입력해주세요.",
-  },
-  password: {
-    empty: "비밀번호를 입력해주세요.",
-    invalid: "비밀번호를 8자 이상 입력해주세요.",
-    match: "비밀번호가 일치하지 않습니다.",
-  },
-};
 
 // 버튼 활성화를 위한 유효성 검사
 function validateSubmitButton() {

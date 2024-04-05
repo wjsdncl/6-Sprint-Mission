@@ -14,6 +14,22 @@ export function validatePasswordMatch(password, confirmPassword) {
   return password === confirmPassword;
 }
 
+export const errorMessages = {
+  email: {
+    empty: "이메일을 입력해주세요.",
+    invalid: "잘못된 이메일 형식입니다.",
+  },
+  nickname: {
+    empty: "닉네임을 입력해주세요.",
+    invalid: "닉네임을 2자 이상 입력해주세요.",
+  },
+  password: {
+    empty: "비밀번호를 입력해주세요.",
+    invalid: "비밀번호를 8자 이상 입력해주세요.",
+    match: "비밀번호가 일치하지 않습니다.",
+  },
+};
+
 function showErrorMessage(input, message) {
   const errorMessageElement = input.parentNode.querySelector(".error_msg");
   errorMessageElement.innerText = message;
