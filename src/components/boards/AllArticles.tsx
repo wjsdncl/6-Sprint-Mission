@@ -30,9 +30,9 @@ const AllArticles: React.FC<AllArticlesProps> = ({ initialBoards }) => {
 		setBoards(list || []);
 	};
 
-	const handleSearch = (value: string) => {
+	const handleSearch = debounce((value: string) => {
 		setSearch(value);
-	};
+	}, 300);
 
 	useEffect(() => {
 		// 처음 렌더링 시에는 실행하지 않음
@@ -40,7 +40,8 @@ const AllArticles: React.FC<AllArticlesProps> = ({ initialBoards }) => {
 			setIsLoading(false);
 			return;
 		}
-		debounce(() => handleLoad({ orderBy: order, search: search }), 500)();
+
+		handleLoad({ orderBy: order, search: search });
 	}, [order, search]);
 
 	return (
