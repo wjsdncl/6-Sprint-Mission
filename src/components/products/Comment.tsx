@@ -1,3 +1,4 @@
+import useDate from '@/hooks/useDate';
 import styles from '@/styles/Items/Comments.module.css';
 import { set } from 'lodash';
 import Image from 'next/image';
@@ -16,20 +17,10 @@ interface CommentProps {
 }
 
 const Comment: React.FC<CommentProps> = ({ comment }) => {
-	const [time, setTime] = useState<string>('');
+	const lastUpdated = new Date(comment.updatedAt);
+	const diffDate = new Date().getTime() - lastUpdated.getTime();
 
-	const getDateDiff = (date: string) => {
-		const lastUpdated = new Date(date);
-		const today = new Date();
-
-		const diffDate = today.getTime() - lastUpdated.getTime();
-
-		setTime(useDate(diffDate));
-	};
-
-	useEffect(() => {
-		getDateDiff(comment.updatedAt);
-	}, [comment.updatedAt]);
+	const time = useDate(diffDate);
 
 	return (
 		<div className={styles.comment_wrap}>

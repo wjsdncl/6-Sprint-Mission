@@ -10,3 +10,5 @@ const useDate = (diffDate: number) => {
 	else if (hour >= 24) return `${Math.abs(hour / 24)}일 전`;
 	else return '';
 };
+
+export default useDate;

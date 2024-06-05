@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { getBoards, BoardType, GetBoardsResponse, GetBoardsQuery } from '@/api/boards.api';
 import AllSection from './AllSection';
 import Link from 'next/link';
-import Dropdown from '@/components/common/Dropdown';
+import Dropdown from '@/components/common/DropDown';
 import Image from 'next/image';
 import { debounce } from 'lodash';
 
