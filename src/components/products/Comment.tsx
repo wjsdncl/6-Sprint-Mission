@@ -1,4 +1,5 @@
 import styles from '@/styles/Items/Comments.module.css';
+import { set } from 'lodash';
 import Image from 'next/image';
 
 import { useEffect, useState } from 'react';
@@ -23,16 +24,7 @@ const Comment: React.FC<CommentProps> = ({ comment }) => {
 
 		const diffDate = today.getTime() - lastUpdated.getTime();
 
-		const hour = Math.floor(Math.abs(diffDate / (1000 * 60 * 60)));
-		const min = Math.floor(Math.abs(diffDate / (1000 * 60)));
-		const sec = Math.floor(Math.abs(diffDate / 1000));
-
-		if (hour >= 24) setTime(`${Math.floor(hour / 24)}일 전`);
-		else if (hour >= 0) setTime(`${hour}시간 전`);
-		else if (min >= 0) setTime(`${min}분 전`);
-		else if (sec >= 0) setTime(`${sec}초 전`);
-		else if (hour >= 24) setTime(`${Math.abs(hour / 24)}일 전`);
-		else console.log(`${hour}시 ${min}분 ${sec}초`);
+		setTime(useDate(diffDate));
 	};
 
 	useEffect(() => {
