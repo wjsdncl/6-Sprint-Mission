@@ -13,30 +13,12 @@ interface BoardPageProps {
 }
 
 const BoardPage: React.FC<BoardPageProps> = ({ initialBoard, initialComments }) => {
-	const { id } = useRouter().query;
-	const [board, setBoard] = useState<BoardType>(initialBoard);
-	const [comments, setComments] = useState<CommentType[]>(initialComments);
-
-	useEffect(() => {
-		const handleLoad = async () => {
-			if (!id) return;
-
-			const board = await getBoardId(id as string);
-			const comments = await getBoardComments(id as string);
-
-			setBoard(board);
-			setComments(comments);
-		};
-
-		handleLoad();
-	}, [id]);
-
 	return (
 		<main>
 			<Header />
 			<HeaderSpace />
-			<Board board={board} />
-			<Comments comments={comments} />
+			<Board board={initialBoard} />
+			<Comments comments={initialComments} />
 		</main>
 	);
 };
