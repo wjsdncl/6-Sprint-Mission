@@ -25,14 +25,12 @@ const addBoard = () => {
 			...prevValues,
 			[name]: value,
 		}));
+		// console.log('handleChange: ', name, value);
 	};
 
 	const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
 		const { name, value } = e.target;
 		handleChange(name as keyof Values, value);
-		if (isValidForm) {
-			setIsValidForm(!(values.title && values.contents));
-		}
 	};
 
 	const handleFileChange = (name: string, value: File | null) => {
@@ -43,6 +41,14 @@ const addBoard = () => {
 		e.preventDefault();
 		console.log('등록: ', values);
 	};
+
+	useEffect(() => {
+		if (!isValidForm && !(values.title && values.contents)) {
+			setIsValidForm(true);
+		} else if (isValidForm && !!(values.title && values.contents)) {
+			setIsValidForm(false);
+		}
+	}, [values]);
 	return (
 		<>
 			<Header />
