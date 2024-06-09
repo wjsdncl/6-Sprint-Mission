@@ -12,12 +12,14 @@ interface BoardsPageProps {
 
 const BoardsPage: React.FC<BoardsPageProps> = ({ initialBestBoards, initialAllBoards }) => {
 	return (
-		<main>
+		<>
 			<Header />
 			<HeaderSpace />
-			<BestArticles initialBoards={initialBestBoards} />
-			<AllArticles initialBoards={initialAllBoards} />
-		</main>
+			<main>
+				<BestArticles initialBoards={initialBestBoards} />
+				<AllArticles initialBoards={initialAllBoards} />
+			</main>
+		</>
 	);
 };
 

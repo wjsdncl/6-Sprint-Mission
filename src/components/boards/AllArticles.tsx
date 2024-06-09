@@ -48,7 +48,7 @@ const AllArticles: React.FC<AllArticlesProps> = ({ initialBoards }) => {
 		<section className={styles.all_articles_wrap}>
 			<div className={styles.all_articles_title_wrap}>
 				<span className={styles.all_articles_title}>게시글</span>
-				<Link className={styles.all_articles_title_btn} href=''>
+				<Link className={styles.all_articles_title_btn} href='/addboard'>
 					글쓰기
 				</Link>
 			</div>
