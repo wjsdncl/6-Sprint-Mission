@@ -10,6 +10,7 @@ import prettierPlugin from 'eslint-plugin-prettier';
 import importPlugin from 'eslint-plugin-import';
 import reactPlugin from 'eslint-plugin-react';
 import reactHooksPlugin from 'eslint-plugin-react-hooks';
+import reactApp from 'eslint-config-react-app';
 
 export default [
 	// 브라우저 전역 변수 추가
@@ -63,6 +64,12 @@ export default [
 			...typescriptPlugin.configs.recommended.rules,
 			...typescriptPlugin.configs['eslint-recommended'].rules,
 		},
+	},
+
+	// react-app 설정 추가
+	{
+		files: ['**/*.{js,jsx,ts,tsx}'],
+		extends: ['react-app'],
 	},
 
 	// Prettier 설정 추가
