@@ -13,6 +13,7 @@ import PasswordInputField from '../components/Sign/PasswordInputField';
 import SocialSignIn from '../components/Sign/SocialSignIn';
 import { PostSignUp } from '../api/Validator.api';
 import { useNavigate } from 'react-router';
+import { getAccessToken } from 'Utils/TokenManager';
 
 const SignUp: React.FC = () => {
 	const [email, setEmail] = useState('');
@@ -30,6 +31,14 @@ const SignUp: React.FC = () => {
 	const [isFormValid, setIsFormValid] = useState(false);
 
 	const navigate = useNavigate();
+
+	useEffect(() => {
+		const accessToken = getAccessToken();
+
+		if (accessToken) {
+			navigate('/');
+		}
+	}, [navigate]);
 
 	// 입력 필드 검증 함수
 	const validateField = (name: string, value: string) => {

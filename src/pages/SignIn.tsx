@@ -11,11 +11,9 @@ import {
 	getAccessToken,
 	setAccessToken,
 	setRefreshToken,
-	clearTokens,
 	getRefreshToken,
 } from '../Utils/TokenManager';
 import { refreshAccessToken } from '../api/Auth.api';
-import instance from '../api/Axios';
 
 const SignIn: React.FC = () => {
 	const [email, setEmail] = useState('');
@@ -45,21 +43,7 @@ const SignIn: React.FC = () => {
 			}
 
 			if (accessToken) {
-				try {
-					// 사용자 정보 가져오기
-					const response = await instance.get('/api/user-info', {
-						headers: {
-							Authorization: `Bearer ${accessToken}`,
-						},
-					});
-					if (response.status === 200) {
-						console.log('User is logged in:', response.data);
-						navigate('/');
-					}
-				} catch (error) {
-					console.error('Auto login failed:', error);
-					clearTokens();
-				}
+				navigate('/');
 			}
 		};
 		autoLogin();
