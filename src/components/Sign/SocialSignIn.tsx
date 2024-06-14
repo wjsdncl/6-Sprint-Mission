@@ -1,6 +1,6 @@
 import React from 'react';
-import GoogleIcon from '../assets/images/icon/ic_google.svg';
-import KakaoIcon from '../assets/images/icon/ic_kakao.svg';
+import GoogleIcon from '../../assets/images/icon/ic_google.svg';
+import KakaoIcon from '../../assets/images/icon/ic_kakao.svg';
 
 const SocialSignIn: React.FC = () => {
 	return (

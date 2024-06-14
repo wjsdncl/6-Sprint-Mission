@@ -1,6 +1,6 @@
 import React from 'react';
-import EyeOpenIcon from '../assets/images/icon/ic_eye_open.svg';
-import EyeCloseIcon from '../assets/images/icon/ic_eye_close.svg';
+import EyeOpenIcon from '../../assets/images/icon/ic_eye_open.svg';
+import EyeCloseIcon from '../../assets/images/icon/ic_eye_close.svg';
 
 interface PasswordInputFieldProps {
 	id: string;
