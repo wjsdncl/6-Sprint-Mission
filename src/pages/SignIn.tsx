@@ -3,7 +3,6 @@ import './Sign.css';
 import LogoImage from '../assets/images/title/title_img.svg';
 import { validateEmail, validatePassword, errorMessages } from '../Utils/Validator';
 import InputField from '../components/Sign/InputField';
-import PasswordInputField from '../components/Sign/PasswordInputField';
 import SocialSignIn from '../components/Sign/SocialSignIn';
 import { PostSignIn } from '../api/Validator.api';
 import { useNavigate } from 'react-router';
@@ -134,9 +133,10 @@ const SignIn: React.FC = () => {
 						error={errors.user_email}
 						onChange={handleInputChange}
 					/>
-					<PasswordInputField
+					<InputField
 						id='user_psw'
 						label='비밀번호'
+						type='password'
 						value={password}
 						placeholder='비밀번호를 입력해주세요'
 						error={errors.user_psw}

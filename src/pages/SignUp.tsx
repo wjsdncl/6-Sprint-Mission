@@ -9,7 +9,6 @@ import {
 	validatePasswordMatch,
 } from '../Utils/Validator';
 import InputField from '../components/Sign/InputField';
-import PasswordInputField from '../components/Sign/PasswordInputField';
 import SocialSignIn from '../components/Sign/SocialSignIn';
 import { PostSignUp } from '../api/Validator.api';
 import { useNavigate } from 'react-router';
@@ -164,9 +163,10 @@ const SignUp: React.FC = () => {
 						error={errors.user_nickname}
 						onChange={handleInputChange}
 					/>
-					<PasswordInputField
+					<InputField
 						id='user_psw'
 						label='비밀번호'
+						type='password'
 						value={password}
 						placeholder='비밀번호를 입력해주세요'
 						error={errors.user_psw}
@@ -174,9 +174,10 @@ const SignUp: React.FC = () => {
 						onChange={handleInputChange}
 						togglePasswordVisibility={togglePasswordVisibilityHandler}
 					/>
-					<PasswordInputField
+					<InputField
 						id='user_psw_chk'
 						label='비밀번호 확인'
+						type='password'
 						value={passwordCheck}
 						placeholder='비밀번호를 다시 한 번 입력해주세요'
 						error={errors.user_psw_chk}
