@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './Sign.css';
-
 import LogoImage from '../assets/images/title/title_img.svg';
 import {
 	validateEmail,
@@ -12,6 +11,8 @@ import {
 import InputField from '../components/Sign/InputField';
 import PasswordInputField from '../components/Sign/PasswordInputField';
 import SocialSignIn from '../components/Sign/SocialSignIn';
+import { PostSignUp } from '../api/Validator.api';
+import { useNavigate } from 'react-router';
 
 const SignUp: React.FC = () => {
 	const [email, setEmail] = useState('');
@@ -28,6 +29,9 @@ const SignUp: React.FC = () => {
 	});
 	const [isFormValid, setIsFormValid] = useState(false);
 
+	const navigate = useNavigate();
+
+	// 입력 필드 검증 함수
 	const validateField = (name: string, value: string) => {
 		let error = '';
 		switch (name) {
@@ -63,6 +67,7 @@ const SignUp: React.FC = () => {
 		setErrors((prevErrors) => ({ ...prevErrors, [name]: error }));
 	};
 
+	// 입력 필드 변경 처리 함수
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = e.target;
 		switch (name) {
@@ -84,6 +89,7 @@ const SignUp: React.FC = () => {
 		validateField(name, value);
 	};
 
+	// 폼 유효성 검사
 	useEffect(() => {
 		const emailValid = email !== '' && validateEmail(email);
 		const nicknameValid = nickname !== '' && validateNickname(nickname);
@@ -94,17 +100,26 @@ const SignUp: React.FC = () => {
 		setIsFormValid(allValid);
 	}, [email, nickname, password, passwordCheck]);
 
-	const handleSubmit = () => {
+	// 폼 제출 처리 함수
+	const handleSubmit = async () => {
 		validateField('user_email', email);
 		validateField('user_nickname', nickname);
 		validateField('user_psw', password);
 		validateField('user_psw_chk', passwordCheck);
 
 		if (isFormValid) {
-			console.log('Form submitted');
+			try {
+				const data = await PostSignUp(email, nickname, password, passwordCheck);
+				console.log('Form submitted successfully', data);
+
+				navigate('/SignIn');
+			} catch (error) {
+				console.error('Form submission failed', error);
+			}
 		}
 	};
 
+	// 비밀번호 보이기/숨기기 토글 함수
 	const togglePasswordVisibilityHandler = () => {
 		setShowPassword(!showPassword);
 	};
@@ -119,7 +134,8 @@ const SignUp: React.FC = () => {
 				<img className='logo_img' src={LogoImage} alt='Logo' />
 			</a>
 
-			<form className='sign_up_form' method='get'>
+			{/* 회원가입 폼 */}
+			<form className='sign_up_form'>
 				<fieldset className='sign_up_content'>
 					<InputField
 						id='user_email'
@@ -160,6 +176,7 @@ const SignUp: React.FC = () => {
 						togglePasswordVisibility={togglePasswordCheckVisibilityHandler}
 					/>
 					<div>
+						{/* 회원가입 버튼 */}
 						<button
 							id='btn'
 							className='submit_btn'
@@ -171,6 +188,7 @@ const SignUp: React.FC = () => {
 					</div>
 				</fieldset>
 
+				{/* 소셜 로그인 */}
 				<SocialSignIn />
 
 				<div className='to_sign_in'>

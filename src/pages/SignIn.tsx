@@ -1,10 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Sign.css';
 import LogoImage from '../assets/images/title/title_img.svg';
 import { validateEmail, validatePassword, errorMessages } from '../Utils/Validator';
 import InputField from '../components/Sign/InputField';
 import PasswordInputField from '../components/Sign/PasswordInputField';
 import SocialSignIn from '../components/Sign/SocialSignIn';
+import { PostSignIn } from '../api/Validator.api';
+import { useNavigate } from 'react-router';
+import {
+	getAccessToken,
+	setAccessToken,
+	setRefreshToken,
+	clearTokens,
+	getRefreshToken,
+} from '../Utils/TokenManager';
+import { refreshAccessToken } from '../api/Auth.api';
+import instance from '../api/Axios';
 
 const SignIn: React.FC = () => {
 	const [email, setEmail] = useState('');
@@ -14,7 +25,47 @@ const SignIn: React.FC = () => {
 		user_email: '',
 		user_psw: '',
 	});
+	const navigate = useNavigate();
 
+	useEffect(() => {
+		// 페이지 로드 시 자동 로그인 시도
+		const autoLogin = async () => {
+			if (!getRefreshToken()) return;
+
+			let accessToken = getAccessToken();
+			if (!accessToken) {
+				try {
+					// 엑세스 토큰 갱신
+					await refreshAccessToken();
+					accessToken = getAccessToken();
+				} catch (error) {
+					console.error('Failed to refresh access token', error);
+					return;
+				}
+			}
+
+			if (accessToken) {
+				try {
+					// 사용자 정보 가져오기
+					const response = await instance.get('/api/user-info', {
+						headers: {
+							Authorization: `Bearer ${accessToken}`,
+						},
+					});
+					if (response.status === 200) {
+						console.log('User is logged in:', response.data);
+						navigate('/');
+					}
+				} catch (error) {
+					console.error('Auto login failed:', error);
+					clearTokens();
+				}
+			}
+		};
+		autoLogin();
+	}, [navigate]);
+
+	// 입력 필드 검증 함수
 	const validateField = (name: string, value: string) => {
 		let error = '';
 		switch (name) {
@@ -38,6 +89,7 @@ const SignIn: React.FC = () => {
 		setErrors((prevErrors) => ({ ...prevErrors, [name]: error }));
 	};
 
+	// 입력 필드 변경 처리 함수
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = e.target;
 		switch (name) {
@@ -53,15 +105,29 @@ const SignIn: React.FC = () => {
 		validateField(name, value);
 	};
 
-	const handleSubmit = () => {
+	// 폼 제출 처리 함수
+	const handleSubmit = async () => {
 		validateField('user_email', email);
 		validateField('user_psw', password);
 
 		if (!errors.user_email && !errors.user_psw) {
-			console.log('Form submitted');
+			try {
+				// 로그인 요청
+				const data = await PostSignIn(email, password);
+				console.log('Form submitted successfully', data);
+
+				// 엑세스 토큰과 리프레시 토큰 저장
+				setAccessToken(data.accessToken);
+				setRefreshToken(data.refreshToken);
+
+				navigate('/');
+			} catch (error) {
+				console.error('Form submission failed', error);
+			}
 		}
 	};
 
+	// 비밀번호 보이기/숨기기 토글 함수
 	const togglePasswordVisibilityHandler = () => {
 		setShowPassword(!showPassword);
 	};
@@ -72,7 +138,8 @@ const SignIn: React.FC = () => {
 				<img className='logo_img' src={LogoImage} alt='Logo' />
 			</a>
 
-			<form className='sign_in_form' method='get'>
+			{/* 로그인 폼 */}
+			<form className='sign_in_form'>
 				<fieldset className='content'>
 					<InputField
 						id='user_email'
@@ -101,6 +168,7 @@ const SignIn: React.FC = () => {
 				</fieldset>
 			</form>
 
+			{/* 소셜 로그인 */}
 			<SocialSignIn />
 
 			<div className='to_sign_up'>
